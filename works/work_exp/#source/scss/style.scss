@@ -1,0 +1,373 @@
+@import "_nullstyle";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap');
+
+// Шаблон ссылок через @extend
+%linksfw500 {
+    font-family: "Heebo";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+}
+
+// Шаблон title for section
+%sectiontitle {
+    font-family: "Heebo";
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 60px;
+    color: #21243D;
+    margin: 0px 0px 16px 0px;
+}
+
+//Шаблон post__title 
+%posttitle {
+    font-family: "Heebo";
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 38px;
+    color: #21243D;
+}
+
+//Шаблон post__date & post__info
+%postdateinfo {
+    font-family: "Heebo";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #21243D;
+}
+
+//Шаблон post__text
+%posttext {
+    font-family: "Heebo";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    color: #21243D;
+    width: 368px;
+
+}
+
+//Шаблон work__title
+%worktitle {
+    font-family: "Heebo";
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    color: #21243D;
+    margin: 0px 0px 14px 0px;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.header__wrapper {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: .8;
+        z-index: 2;
+    }
+
+    // &::after {}
+}
+
+.header__burger {
+    display: none;
+}
+
+@media (max-width:767px) {
+    body.lock {
+        overflow: hidden;
+    }
+}
+
+.header__wrapper {
+    @media (max-width:767px) {
+        .header__burger {
+            display: block;
+            position: relative;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 3;
+            left: 30px;
+        }
+
+        .header__burger::after,
+        .header__burger::before {
+            content: "";
+            background-color: #000;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            left: 0;
+            transition: all .3s ease 0s;
+        }
+
+        .header__burger.active span {
+            transform: scale(0);
+        }
+
+        .header__burger.active::before {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+
+        .header__burger.active::after {
+            transform: rotate(-45deg);
+            bottom: 9px;
+        }
+
+        .header__burger::before {
+            top: 0;
+        }
+
+        .header__burger::after {
+            bottom: 0;
+        }
+
+        .header__burger span {
+            position: absolute;
+            background-color: #000;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            top: 9px;
+            transition: all .3s ease 0s;
+        }
+
+        .header__menu {
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            top: -100%;
+            transition: all .3s ease 0s;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; //фиксим скрол в меню телефона в альбомном режиме
+            background-color: #FFFFFF;
+            padding: 70px 10px 20px 30px;
+        }
+
+        .header__menu.active {
+            top: 0;
+        }
+
+        .header__body {
+            height: 50px;
+        }
+
+        .header__list {
+            display: block;
+        }
+
+        .header__list li {
+            margin: 0px 0px 20px 0px;
+        }
+    }
+}
+
+
+
+.header__body {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px 15% 0px 0px;
+
+    height: 55px;
+    align-items: center;
+}
+
+.header__list {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+
+    .header__link {
+        @extend %linksfw500;
+        color: #000;
+    }
+
+    .active {
+        color: #FF6464;
+    }
+}
+
+.header__list li:not(:last-child) {
+    margin-right: 33px;
+
+}
+
+
+
+.container {
+    max-width: 701px;
+    margin: 0 auto;
+
+    @media(max-width: 767px) {
+        width: none;
+    }
+
+    @media (max-width:480px) {
+        max-width: 364px; // plus 10px for padding
+        margin: 0 auto;
+    }
+}
+
+.work {
+    padding-top: 78px;
+
+}
+
+.work__box {
+    .work__item {
+        .work__text {
+            font-family: "Heebo";
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 23px;
+            color: #000000;
+            margin: 0px 0px 36px 0px;
+            padding: 0 10px;
+
+            @media (max-width: 480px) {
+                margin: 0px 0px 23px 0px;
+
+            }
+
+        }
+
+        img {
+            display: block;
+            flex: 0 0 100%;
+            padding: 0 10px;
+            margin: 0px 0px 30px 0px;
+
+            @media (max-width:480px) {
+                width: 339px;
+            }
+        }
+    }
+}
+
+
+.work__data {
+    .work__title {
+        font-family: "Heebo";
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 50px;
+        color: #21243D;
+        margin: 0px 0px 23px 0px;
+        padding: 0px 10px;
+
+        @media (max-width:480px) {
+            font-size: 30px;
+            line-height: 35px;
+        }
+    }
+
+    .work__title1 {
+        font-family: "Heebo";
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 20px;
+        margin: 0px 0px 20px 0px;
+        color: #21243D;
+        padding: 0px 10px;
+    }
+
+    .work__title2 {
+        font-family: "Heebo";
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 30px;
+        color: #21243D;
+        padding: 0px 10px;
+        margin: 0px 0px 20px 0px;
+    }
+
+    .work__dateinfo {
+        display: flex;
+        margin: 0px 0px 23px 0px;
+        padding: 0px 10px;
+
+        .work__date {
+            font-family: "Heebo";
+            font-weight: 900;
+            font-size: 18px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            padding: 0px 10px;
+            background: #FF7C7C;
+            border-radius: 16px;
+            margin-right: 17px;
+
+            @media (max-width:480px) {
+                padding: 0px 10px;
+                font-size: 16px;
+                margin-right: 17px;
+                line-height: 10px;
+            }
+        }
+
+        .work__info {
+            font-family: "Heebo";
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 29px;
+            color: #21243D;
+
+            @media (max-width:480px) {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+
+    }
+}
+
+
+
+.footer {
+    margin: 53px 0px 0px 0px;
+    display: flex;
+
+    a:not(:last-child) {
+        margin: 0px 35px 0px 0px;
+    }
+
+    a svg {
+        margin: 0px 0px 26px 0px;
+    }
+
+    .copy {
+        margin: 0px 0px 54px 0px;
+        font-family: "Heebo";
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: #21243D;
+        text-align: center;
+
+    }
+}
